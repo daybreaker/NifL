@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'airbrake'
 gem 'bourbon'
+gem 'neat'
 gem 'flutie'
 gem 'high_voltage'
 gem 'jquery-rails'
@@ -13,6 +14,7 @@ gem 'recipient_interceptor'
 gem 'simple_form'
 gem 'strong_parameters'
 gem 'thin'
+gem 'devise'
 
 group :assets do
   gem 'coffee-rails'
