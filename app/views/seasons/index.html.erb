@@ -1,0 +1,11 @@
+<% @weeks.each do |week, games| %>
+  <div class="week" style="display:inline-block;vertical-align:top;">
+    <h1>Week <%= week %></h1>
+
+    <% games.each do |game| %>
+      <p>
+        <%= "#{game.home_team.abbr} vs #{game.away_team.abbr}" %>
+      </p>
+    <% end %>
+  </div>
+<% end %>

@@ -15,6 +15,7 @@ gem 'simple_form'
 gem 'strong_parameters'
 gem 'thin'
 gem 'devise'
+gem 'rake', '=10.1.1'
 
 group :assets do
   gem 'coffee-rails'
@@ -26,6 +27,7 @@ group :development do
   gem 'foreman'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'sqlite3'
 end
 
 group :development, :test do

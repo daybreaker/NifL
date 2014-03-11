@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130501220945) do
+ActiveRecord::Schema.define(:version => 20140310005619) do
 
   create_table "byes", :force => true do |t|
     t.integer  "season_id"
@@ -38,8 +38,10 @@ ActiveRecord::Schema.define(:version => 20130501220945) do
     t.integer  "losing_score"
     t.string   "current_spread"
     t.integer  "user_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "game_id"
+    t.integer  "made_before_week"
   end
 
   create_table "seasons", :force => true do |t|

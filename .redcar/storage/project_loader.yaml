@@ -1,0 +1,6 @@
+--- 
+open_files: 
+  - app/controllers/seasons_controller.rb
+  - app/views/layouts/application.html.erb
+  - app/views/seasons/index.html.erb
+  - app/models/season.rb

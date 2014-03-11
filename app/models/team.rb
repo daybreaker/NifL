@@ -7,9 +7,9 @@ class Team < ActiveRecord::Base
 
   def games(season = nil)
     if season
-      g = home_games.where("weeks.season_id = ?",1) + away_games.where("weeks.season_id = ?",1)
+      g = home_games.where("weeks.season_id = ?",1) + away_games.where("weeks.season_id = ?",1) + byes.where("weeks.season_id = ?",1)
     else
-      g = home_games + away_games
+      g = home_games + away_games + byes
     end
     g.sort_by{|x| x.week.number}
   end

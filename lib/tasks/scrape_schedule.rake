@@ -19,7 +19,7 @@ task :load_schedule => :environment  do
     team_name = team_cells[0].css("a").text
     team = Team.where(abbr: team_name).first
     if team.blank?
-      Team.new(abbr: team_name)
+      team = Team.new(abbr: team_name)
       team.save
     end
 
@@ -42,9 +42,17 @@ task :load_schedule => :environment  do
           bye.save
         end
       else
-        loc, other_team = game.split(" ")
-        home_team = loc == "vs" ? team : Team.find_by_abbr(other_team)
-        away_team = loc == "at" ? team : Team.find_by_abbr(other_team)
+        loc, other_team_abbr = game.split(" ")
+        
+        other_team = Team.find_by_abbr(other_team_abbr)
+        
+        if other_team.blank?
+          other_team = Team.new(abbr: other_team_abbr)
+          other_team.save
+        end
+        
+        home_team = loc == "vs" ? team : other_team
+        away_team = loc == "at" ? team : other_team
 
         game_attributes = {week_id: week.id, away_team_id: away_team.id, home_team_id: home_team.id}
         game = Game.where(game_attributes).first
