@@ -1,0 +1,12 @@
+-has_pick = @picks.detect{|pick| pick.for_team?(game, team)}
+-if has_pick
+  =team.abbr
+-else
+  .team-pick
+    =form_for Pick.new, html: {id: "pick_form_#{team.id}", class: 'pick-form'}, data: {update_target: "game_#{game.id}", remote: true}, :method => "post" do |f|
+      =f.hidden_field :user_id, value: current_user.id
+      =f.hidden_field :winning_team_id, value: team.id
+      =f.hidden_field :losing_team_id, value: game.teams.detect{|x| x.id != team.id}.id
+      =f.hidden_field :game_id, value: game.id
+
+      =link_to team.abbr, "#", class: "make-pick"

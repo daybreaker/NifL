@@ -1,0 +1,7 @@
+-puts "Loaded"
+%tr{ id: "game_#{game.id}" }
+  %td.home
+    =render partial: 'teams/team', locals: {team: game.home_team, game: game}
+  %td.away
+    =render partial: 'teams/team', locals: {team: game.away_team, game: game}
+
