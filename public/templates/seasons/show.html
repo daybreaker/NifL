@@ -1,0 +1,23 @@
+<a href="/#">index</a>
+
+<tabset>
+  <tab ng-repeat="tab in tabs" heading="Week {{tab.number}}" active="tab.active" disabled="tab.disabled">
+    <div ng-include="'week'"></div>
+  </tab>
+</tabset>
+
+<script type="text/ng-template" id="week">
+  <h1>Week {{tab.number}}</h1>
+  <div ng-repeat="game in tab.games" class="game">
+    <input type="radio" ng-change="makePick(game.game_info.id, game.teams[0].id)" ng-model="pick" value="{{game.teams[0].abbr}}">
+    <span class="home_team">
+      {{game.teams[0].abbr}}
+    </span>
+    VS 
+    <span class="away_team">
+      <input type="radio" ng-change="makePick(game.game_info.id, game.teams[1].id)" ng-model="pick" value="{{game.teams[1].abbr}}">
+      {{game.teams[1].abbr}}
+    </span>
+    <p>{{pick}}</p>
+  </div>
+</script>

@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="nifl">
 <head>
   <meta charset="utf-8" />
   <meta name="ROBOTS" content="NOODP" />
   <meta name="viewport" content="initial-scale=1" />
   <title><%= title %></title>
-  <%= stylesheet_link_tag :application, :media => 'all' %>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= body_class %>">
   <%= render 'flashes' -%>
-  <%= yield %>
-  <%= render 'javascript' %>
+  <div ng-view>
+    <%= yield %>
+  </div>
 </body>
 </html>
