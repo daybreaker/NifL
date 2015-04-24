@@ -7,4 +7,14 @@ class Game < ActiveRecord::Base
   def teams
     [home_team, away_team]
   end
+
+  def user_picks(user = current_user)
+    return false if user.blank?
+    picks.where(user: user)
+  end
+
+  def user_pick(user = current_user)
+    return false if user.blank?
+    user_picks(user).find_by(status: 'active')
+  end
 end

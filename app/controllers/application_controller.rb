@@ -6,10 +6,10 @@ class ApplicationController < ActionController::Base
   before_filter :find_picks
 
   def set_season
-    @season = Season.find_by_year(2014)
+    @season = Season.includes(weeks: :games).current
   end
 
   def find_picks
-    @picks = Pick.where(:user_id => current_user.id).includes(:game => :week).where(weeks: {season_id:@season.id}) if current_user    
+    @picks = Pick.where(:user_id => current_user.id).includes(:game => :week).where(weeks: {season_id:@season.id}) if current_user
   end
 end
