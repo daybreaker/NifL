@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: seasons
+#
+#  id         :integer          not null, primary key
+#  year       :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Season < ActiveRecord::Base
   has_many :weeks
 

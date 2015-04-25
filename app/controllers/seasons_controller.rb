@@ -8,7 +8,6 @@ class SeasonsController < ApplicationController
   end
 
   def show
-    def show
     @season = Season.all_includes.find_by(year: params[:year]) if params[:year]
 
     respond_to do |format|

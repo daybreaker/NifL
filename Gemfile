@@ -13,8 +13,8 @@ gem 'email_validator'
 gem 'flutie'
 gem 'high_voltage'
 gem 'jquery-rails'
+gem 'mysql2'
 gem 'neat'
-gem 'pg'
 gem 'rack-timeout'
 gem 'rails', '~> 4.2'
 gem 'rails_admin'
@@ -28,9 +28,14 @@ gem 'uglifier'
 gem 'unicorn'
 
 group :development do
+  gem 'better_errors'
+  gem 'annotate'
   gem 'foreman'
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'haml-lint'
+  gem 'ruby-lint'
+  gem 'rubocop'
 end
 
 group :development, :test do

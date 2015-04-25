@@ -1,0 +1,7 @@
+= react_component 'Week', number: week.number
+= render week.games
+-if week.byes.any?
+  %h3
+    Byes:
+  .byes
+    = week.byes.collect(&:team_abbr).join(", ")
