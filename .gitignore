@@ -5,10 +5,10 @@
 /.bundle
 /.env
 /.foreman
-/config/secrets.yml
 /coverage/*
 /db/*.sqlite3
 /log/*
 /public/system
 /tags
 /tmp/*
+config/secrets.yml
