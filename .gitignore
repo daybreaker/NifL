@@ -5,6 +5,7 @@
 /.bundle
 /.env
 /.foreman
+/config/secrets.yml
 /coverage/*
 /db/*.sqlite3
 /log/*
