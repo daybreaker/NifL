@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140705164339) do
+ActiveRecord::Schema.define(version: 20150514232942) do
 
   create_table "byes", force: :cascade do |t|
     t.integer  "week_id",    limit: 4
@@ -50,6 +50,16 @@ ActiveRecord::Schema.define(version: 20140705164339) do
 
   add_index "games", ["week_id"], name: "index_games_on_week_id", using: :btree
 
+  create_table "identities", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.string   "provider",   limit: 255
+    t.string   "uid",        limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
+
   create_table "picks", force: :cascade do |t|
     t.integer  "winning_team_id",     limit: 4
     t.integer  "losing_team_id",      limit: 4
@@ -62,10 +72,21 @@ ActiveRecord::Schema.define(version: 20140705164339) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status",              limit: 255
+    t.integer  "pickset_id",          limit: 4
   end
 
   add_index "picks", ["game_id"], name: "index_picks_on_game_id", using: :btree
+  add_index "picks", ["pickset_id"], name: "index_picks_on_pickset_id", using: :btree
   add_index "picks", ["user_id"], name: "index_picks_on_user_id", using: :btree
+
+  create_table "picksets", force: :cascade do |t|
+    t.integer "season_id", limit: 4
+    t.integer "user_id",   limit: 4
+    t.string  "name",      limit: 255
+  end
+
+  add_index "picksets", ["season_id"], name: "index_picksets_on_season_id", using: :btree
+  add_index "picksets", ["user_id"], name: "index_picksets_on_user_id", using: :btree
 
   create_table "seasons", force: :cascade do |t|
     t.integer  "year",       limit: 4
@@ -79,6 +100,8 @@ ActiveRecord::Schema.define(version: 20140705164339) do
     t.string   "abbr",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "conference", limit: 255
+    t.string   "division",   limit: 255
   end
 
   create_table "users", force: :cascade do |t|
@@ -94,10 +117,16 @@ ActiveRecord::Schema.define(version: 20140705164339) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "username",               limit: 255
+    t.string   "name",                   limit: 255
+    t.string   "confirmation_token",     limit: 255
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email",      limit: 255
+    t.string   "role",                   limit: 255
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
 
   create_table "weeks", force: :cascade do |t|
     t.integer  "number",     limit: 4
@@ -108,4 +137,8 @@ ActiveRecord::Schema.define(version: 20140705164339) do
 
   add_index "weeks", ["season_id"], name: "index_weeks_on_season_id", using: :btree
 
+  add_foreign_key "identities", "users"
+  add_foreign_key "picks", "picksets"
+  add_foreign_key "picksets", "seasons"
+  add_foreign_key "picksets", "users"
 end

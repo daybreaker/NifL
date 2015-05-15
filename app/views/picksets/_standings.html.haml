@@ -1,0 +1,25 @@
+#standings
+  - @grouped_teams.each do |conf, div_groups|
+    %div{ class: "conference #{conf}" }
+      %h1= conf.upcase
+      - div_groups.each do |division, teams|
+        .divisions
+          %h2= division.titleize
+          %table.teams
+            %tr
+              %th
+                &nbsp;
+              %th.record
+                %strong
+                  W
+              %th.record
+                %strong
+                  L
+            - teams.each do |team|
+              %tr.team
+                %td
+                  = team.name
+                %td.record
+                  = @pickset.wins_for(team)
+                %td.record
+                  = @pickset.losses_for(team)

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Picksets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @picksets.each do |pickset| %>
+      <tr>
+        <td><%= link_to 'Show', pickset %></td>
+        <td><%= link_to 'Edit', edit_pickset_path(pickset) %></td>
+        <td><%= link_to 'Destroy', pickset, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pickset', new_pickset_path %>

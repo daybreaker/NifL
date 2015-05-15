@@ -1,0 +1,27 @@
+#standings{
+  @include outer-container(100%);
+
+  .conference{
+    @include span-columns(6);
+    &.afc{
+      background-color: red;
+
+    }
+    &.nfc{
+      background-color: blue;
+    }
+    .divisions{
+      @include span-columns(1.5 of 6);
+
+      table.teams{
+        .record{
+          text-align: center;
+          width: 20%;
+        }
+        tr.team{
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

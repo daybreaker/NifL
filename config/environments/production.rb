@@ -1,6 +1,8 @@
 require Rails.root.join('config/smtp')
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  # General Settings
+  config.app_domain = 'n_if_l.com'
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -88,7 +90,19 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { host: 'n_if_l.com' }
-
   config.react.variant = :production
+
+  # Email
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { host: config.app_domain }
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: '587',
+    enable_starttls_auto: true,
+    user_name: Rails.application.secrets.gmail_user,
+    password: Rails.application.secrets.gmail_pass,
+    authentication: :plain,
+    domain: 'n_if_l.com'
+  }
 end

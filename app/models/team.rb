@@ -9,22 +9,30 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
-
 class Team < ActiveRecord::Base
   has_many :byes
-  has_many :home_games, :class_name => "Game", :foreign_key => :home_team_id
-  has_many :away_games, :class_name => "Game", :foreign_key => :away_team_id
+  has_many :home_games, class_name: "Game", foreign_key: :home_team_id
+  has_many :away_games, class_name: "Game", foreign_key: :away_team_id
+
+  CONFERENCES = %w(afc nfc)
+  DIVISIONS = %w(east north south west)
 
   def games(season: nil, include_byes: true)
     if season
-      g = home_games.where("weeks.season_id = ?",1) + away_games.where("weeks.season_id = ?",1) + ( include_byes ? byes.where("weeks.season_id = ?",1) : [] )
+      conds = { weeks: { season_id: season } }
+      g = home_games.where(conds) + away_games.where(conds) + (include_byes ? byes.where(conds) : [])
     else
-      g = home_games + away_games + ( include_byes ? byes : [] )
+      g = home_games + away_games + (include_byes ? byes : [])
     end
-    g.sort_by{|x| x.week.number}
+    g.sort_by(&:week_number)
   end
 
   def opponents
-    games(include_byes: false).collect{|x| x.other_team(self)}
+    games(include_byes: false).collect { |x| x.other_team(self) }
+  end
+
+  def self.by_conference
+    Team.order(conference: :asc, division: :asc).group_by(&:conference)
+      .map { |c, y| [c, y.group_by(&:division)] }
   end
 end

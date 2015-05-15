@@ -7,12 +7,12 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
-
 class Season < ActiveRecord::Base
   has_many :weeks
+  has_many :picksets
 
   def self.current
-    find_by(:year => 2015)
+    find_by(year: 2015)
   end
 
   def all_includes
@@ -20,6 +20,6 @@ class Season < ActiveRecord::Base
   end
 
   def games
-    weeks.map{|w| [w.number, w.games.sort{|x,y| x.home_team.abbr <=> y.home_team.abbr}] }
+    weeks.map { |w| [w.number, w.games.sort { |x, y| x.home_team.abbr <=> y.home_team.abbr }] }
   end
 end

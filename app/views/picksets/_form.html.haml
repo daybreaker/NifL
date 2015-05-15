@@ -1,0 +1,9 @@
+= simple_form_for(@pickset) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.hidden_field :user_id, value: current_user.id
+    = f.hidden_field :season_id, value: @season.id
+    = f.text_field :name
+  .form-actions
+    = f.button :submit

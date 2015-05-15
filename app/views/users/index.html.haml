@@ -1,7 +1,17 @@
 %h1
-  Season
--@games_by_week.each do |week, games|
-  %h2
-    ="Week #{week}"
-  %table
-    =render games
+  Current picks for the #{@season.year} season
+
+#picksets
+  - @picksets.each do |pickset|
+    .pickset
+      %tr
+        %td
+          %strong
+            = pickset.name
+        %td= link_to icon('check') + ' Make Picks', pickset
+        %td= link_to icon('eye') + ' View Picks', permalink_pickset_path(pickset)
+        %td
+          = link_to icon('pencil') + ' Change Name', edit_pickset_path(pickset)
+        %td= link_to icon('minus-circle') + ' Delete Picks', pickset, method: :delete, data: { confirm: 'Are you sure?' }
+
+= link_to "New Pick Set", new_pickset_path

@@ -10,12 +10,13 @@
 #  created_at   :datetime
 #  updated_at   :datetime
 #
-
 class Game < ActiveRecord::Base
   has_many :picks
-  belongs_to :away_team, :class_name => "Team", :foreign_key => :away_team_id
-  belongs_to :home_team, :class_name => "Team", :foreign_key => :home_team_id
+  belongs_to :away_team, class_name: "Team", foreign_key: :away_team_id
+  belongs_to :home_team, class_name: "Team", foreign_key: :home_team_id
   belongs_to :week
+
+  delegate :number, to: :week, prefix: true
 
   def teams
     [home_team, away_team]
