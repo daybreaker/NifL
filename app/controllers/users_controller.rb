@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   # before_action :set_user, only: [:show, :edit, :update, :destroy, :finish_signup]
 
   def index
+    find_picks
   end
 
   def update

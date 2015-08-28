@@ -41,6 +41,7 @@ group :development do
   gem 'haml-lint'
   gem 'ruby-lint'
   gem 'rubocop'
+  gem 'scss_lint'
 end
 
 group :development, :test do
@@ -52,7 +53,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara-webkit', '>= 1.0.0'
   gem 'database_cleaner'
   gem 'formulaic'
   gem 'launchy'

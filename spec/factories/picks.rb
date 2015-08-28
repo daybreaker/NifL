@@ -14,6 +14,7 @@
 #  created_at          :datetime
 #  updated_at          :datetime
 #  status              :string(255)
+#  pickset_id          :integer
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl

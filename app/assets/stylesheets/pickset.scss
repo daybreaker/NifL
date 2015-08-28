@@ -1,27 +1,75 @@
-#standings{
+#standings {
   @include outer-container(100%);
-
-  .conference{
+  .conference {
     @include span-columns(6);
-    &.afc{
+    &.afc {
       background-color: red;
-
     }
-    &.nfc{
+    &.nfc {
       background-color: blue;
     }
-    .divisions{
+    .divisions {
       @include span-columns(1.5 of 6);
-
-      table.teams{
-        .record{
+      table.teams {
+        .record {
           text-align: center;
           width: 20%;
         }
-        tr.team{
+        tr.team {
           font-size: 12px;
         }
       }
     }
+  }
+}
+
+$accent: #ff4081;
+$primary: #1976d2;
+
+body > div {
+  margin: 0;
+  padding: 0;
+}
+nav {
+  display: block;
+  width: 100%;
+  ul {
+    display: block;
+    width: 100%;
+    margin: 20px 0 0;
+    padding: 0;
+
+    li {
+      display: inline-block;
+      a {
+        display: inline-block;
+        padding: 4px 5px;
+        color: #bada55;
+        text-decoration: none;
+        &:hover {
+          color: darken(#bada55, 20%);
+          background: lighten(#bada55, 30%);
+        }
+      }
+      &.current {
+        a {
+          color: #fff;
+          background: $accent;
+        }
+      }
+    }
+  }
+}
+
+.clear{
+  clear: both;
+}
+
+.content {
+  width: 100%;
+  @include outer-container;
+  background: $accent;
+  .game{
+    @include span-columns(3);
   }
 }

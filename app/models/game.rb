@@ -26,12 +26,12 @@ class Game < ActiveRecord::Base
     teams - [team]
   end
 
-  def user_picks(user = current_user)
+  def user_picks(user = nil)
     return false if user.blank?
     picks.where(user: user)
   end
 
-  def user_pick(user = current_user)
+  def user_pick(user = nil)
     return false if user.blank?
     user_picks(user).find_by(status: 'active')
   end

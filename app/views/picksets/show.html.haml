@@ -1,5 +1,6 @@
-=render partial: 'standings'
-
+=#render partial: 'standings'
+=#render @season.weeks
+=react_component 'Pickset', pickset_season: @pickset_season
 
 = link_to 'Edit', edit_pickset_path(@pickset)
 |

@@ -68,9 +68,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-webkit (1.5.1)
-      capybara (>= 2.3.0, < 2.5.0)
-      json
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -287,6 +284,9 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (~> 1.1)
+    scss_lint (0.40.1)
+      rainbow (~> 2.0)
+      sass (~> 3.4.1)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
     simple_form (3.1.0)
@@ -338,7 +338,6 @@ DEPENDENCIES
   bitters
   bourbon
   cancancan
-  capybara-webkit (>= 1.0.0)
   coffee-rails
   database_cleaner
   delayed_job_active_record
@@ -371,6 +370,7 @@ DEPENDENCIES
   rubocop
   ruby-lint
   sass-rails
+  scss_lint
   shoulda-matchers
   simple_form
   spring

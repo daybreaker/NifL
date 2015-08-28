@@ -14,6 +14,7 @@
 #  created_at          :datetime
 #  updated_at          :datetime
 #  status              :string(255)
+#  pickset_id          :integer
 #
 class Pick < ActiveRecord::Base
   belongs_to :game
@@ -25,5 +26,13 @@ class Pick < ActiveRecord::Base
 
   def for_team?(game, team)
     game_id == game.id && winning_team_id == team.id && status == "active"
+  end
+
+  def self.user_picks(user = current_user)
+    where(user: user)
+  end
+
+  def self.for_pickset(pickset_id)
+    where(pickset: pickset_id)
   end
 end

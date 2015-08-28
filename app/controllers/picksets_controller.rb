@@ -1,3 +1,4 @@
+# Pick Sets
 class PicksetsController < ApplicationController
   before_action :set_pickset, only: [:show, :edit, :update, :destroy]
 
@@ -8,7 +9,8 @@ class PicksetsController < ApplicationController
 
   # GET /picksets/1
   def show
-    @grouped_teams = Team.by_conference
+      @pickset_season = @season.to_json
+      @grouped_teams = Team.by_conference
   end
 
   # GET /picksets/new
@@ -25,7 +27,7 @@ class PicksetsController < ApplicationController
     @pickset ||= Pickset.new(pickset_params)
 
     if @pickset.save
-      redirect_to root_path, notice: 'Pickset was successfully created.'
+      redirect_to root_path, notice: "Pickset was successfully created."
     else
       render :new
     end

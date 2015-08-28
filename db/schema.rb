@@ -137,8 +137,4 @@ ActiveRecord::Schema.define(version: 20150514232942) do
 
   add_index "weeks", ["season_id"], name: "index_weeks_on_season_id", using: :btree
 
-  add_foreign_key "identities", "users"
-  add_foreign_key "picks", "picksets"
-  add_foreign_key "picksets", "seasons"
-  add_foreign_key "picksets", "users"
 end

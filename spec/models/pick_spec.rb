@@ -14,6 +14,7 @@
 #  created_at          :datetime
 #  updated_at          :datetime
 #  status              :string(255)
+#  pickset_id          :integer
 #
 
 require 'spec_helper'

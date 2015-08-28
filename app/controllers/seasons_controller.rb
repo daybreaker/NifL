@@ -13,15 +13,7 @@ class SeasonsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        weeks = @season.weeks.collect do |week|
-          {
-            week: week,
-            games: week.games.collect do |game|
-              { game_info: game, teams: game.teams, pick: game.user_pick }
-            end
-          }
-        end
-        render :json => {season: @season, weeks: weeks }.to_json
+        render :json => @season.to_json
       end
     end
   end
