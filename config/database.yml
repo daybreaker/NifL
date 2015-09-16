@@ -1,13 +1,11 @@
 development: &default
-  adapter: mysql2
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   database: n_if_l_development
-  username: root
-  password:
-  socket:  <%=
-        ['/opt/local/var/run/mysql5/mysqld.sock', # darwinports
-         '/opt/local/var/run/mysqld/mysqld.sock', # darwinports, again
-         '/var/run/mysqld/mysqld.sock',           # ubuntu/debian
-         '/tmp/mysql.sock'].select { |f| File.exist? f }.first %>
+  username: <%= Rails.application.secrets.db_user %>
+  password: <%= Rails.application.secrets.db_pass %>
+
 
 test:
   <<: *default
